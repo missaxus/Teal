@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <UseWindowsForms>true</UseWindowsForms>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <WarningsAsErrors>CS8019</WarningsAsErrors>
+        <NoWarn>1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="Teal.Resources.cimgui.dll" />
+        <None Remove="Teal.Resources.ImGuiImpl.dll" />
+        <None Remove="Teal.Resources.Font.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Teal.Resources.cimgui.dll" LogicalName="Teal.Resources.cimgui.dll" />
+        <EmbeddedResource Include="Teal.Resources.ImGuiImpl.dll" LogicalName="Teal.Resources.ImGuiImpl.dll" />
+        <EmbeddedResource Include="Teal.Resources.Font.ttf" LogicalName="Teal.Resources.Font.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Hexa.NET.ImGui" Version="2.2.10-prerelease" />
+        <PackageReference Include="Hexa.NET.ImGui.Backends" Version="1.0.19-prerelease" />
+        <PackageReference Include="MinHook.NET" Version="1.1.2" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <LibDlls Include="lib\\*.dll" />
+        <Reference Include="@(LibDlls->'%(Filename)')">
+            <HintPath>%(LibDlls.FullPath)</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+</Project>
